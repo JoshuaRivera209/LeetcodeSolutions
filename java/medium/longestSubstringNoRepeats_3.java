@@ -28,26 +28,33 @@
 import java.util.HashSet;
 
 public class longestSubstringNoRepeats_3 {
-    /*  We will try a sliding window approach to this problem by looping
-        through the string and expanding the window each time we encounter a character
-        that is not repeating. Once we find a repeat we will set the current length to keep
-        track of the max substring length. We will do this until one of the pointers reaches the
-        end of the string.
+    /*
+        We will use 2 pointers to move through this problem, a left and a right pointer.
+        We will use a hashset that will contain the characters of the sequence. Using a hashset
+        will ensure that the sequence is unique. Using a for loop, we will go through the array and add
+        each character to the hashset, and then clear it when we reach a unique character. With this approach,
+        the idea is that the hashset will only contain the current unique sequence, and when we reach the end of the sequence
+        we will clear the hashmap and restart. We increment the left pointer within the while loop to catch it back up to the right
+        pointer, since we know the size of the sequence will be the amount of times we need to increment the left pointer. When
+        calculating the bestSize, we use (r-l)+1. We add 1 here because of the offset when indexing from 0.
+
+        This approach only runs through the string one time, and will have a runtime of O(n) with a space complexity of O(n)
+        because of our use of a hashset.
      */
 
     // Method to loop through string and find the longest substring
     // with no repeating characters.
     public static int lengthOfLongestSubstring(String s) {
-        int left = 0;
+        int l = 0;
         int bestSize = 0;
         HashSet<Character> chars = new HashSet<>();
-        for (int right = 0; right < s.length(); right++) {
-            while (chars.contains(s.charAt(right))) {
-                chars.remove(s.charAt(left));
-                left++;
+        for (int r=0; r<s.length(); r++) {
+            while(chars.contains(s.charAt(r))) {
+                chars.remove(s.charAt(l));
+                l++;
             }
-            chars.add(s.charAt(right));
-            bestSize = Math.max(bestSize, (right - left) + 1);
+            chars.add(s.charAt(r));
+            bestSize = Math.max(bestSize, (r-l) + 1);
         }
         return bestSize;
     }
@@ -60,6 +67,6 @@ public class longestSubstringNoRepeats_3 {
         String test3 = "abcabcbb";
         String test4 = " ";
         String test5 = "5678917256";
-        System.out.println(lengthOfLongestSubstring(test5));
+        System.out.println(lengthOfLongestSubstring(test3));
     }
 }
