@@ -32,7 +32,7 @@ public class longestSubstringNoRepeats_3 {
         We will use 2 pointers to move through this problem, a left and a right pointer.
         We will use a hashset that will contain the characters of the sequence. Using a hashset
         will ensure that the sequence is unique. Using a for loop, we will go through the array and add
-        each character to the hashset, and then clear it when we reach a unique character. With this approach,
+        each character to the hashset, and then clear it when we reach a repeating character. With this approach,
         the idea is that the hashset will only contain the current unique sequence, and when we reach the end of the sequence
         we will clear the hashmap and restart. We increment the left pointer within the while loop to catch it back up to the right
         pointer, since we know the size of the sequence will be the amount of times we need to increment the left pointer. When
