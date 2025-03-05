@@ -19,6 +19,8 @@
         0 <= prices[i] <= 104
  */
 
+import java.util.Arrays;
+
 public class bestTimeToBuySellStock_121 {
     // Method to find and return the maximum profit
     public static int maxProfit(int[] prices) {
